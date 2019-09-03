@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed;
 
-    [HideInInspector] public bool walkb;
-
+    AudioSource walksound;
+    
     private void OnCollisionStay(Collision collision)
     {
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
@@ -106,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         //MOVE BACKWARD
         if (Input.GetKey(KeyCode.S))
         {
-            walkb = true;
             animator.SetBool("walk", true);
             transform.position += -transform.forward.normalized * speed * Time.deltaTime;
         }
@@ -114,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.S))
         {
             animator.SetBool("walk", false);
-            walkb = false;
         }
         //----------------------------------------------------
     }
